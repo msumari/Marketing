@@ -6,14 +6,14 @@ import dayOfYear from "dayjs/plugin/dayOfYear";
 import isLeapYear from "dayjs/plugin/isLeapYear";
 import { db } from "./firebase";
 
-// const axios = require("axios");
-// const https = require("https");
-// var btoa = require("btoa");
-// const api_key = "0f4754dff3d87f9a";
-// const secret_key =
-//   "MjYxNzU3ZjgyNmY4NWJjODUyOTI1MmI4MDBlOWY5ZGVjMGY0ZDZlZDAzMGJjM2IxNjQwMDY5MDhmMDhmYjIxOQ==";
-// const content_type = "application/json";
-// const source_addr = "INFO";
+const axios = require("axios");
+const https = require("https");
+var btoa = require("btoa");
+const api_key = "0f4754dff3d87f9a";
+const secret_key =
+  "MjYxNzU3ZjgyNmY4NWJjODUyOTI1MmI4MDBlOWY5ZGVjMGY0ZDZlZDAzMGJjM2IxNjQwMDY5MDhmMDhmYjIxOQ==";
+const content_type = "application/json";
+const source_addr = "INFO";
 
 function Tab({ id, name, date, occasion, phone, relation }) {
   dayjs.extend(dayOfYear);
@@ -99,34 +99,34 @@ function Tab({ id, name, date, occasion, phone, relation }) {
     contact["dest_addr"] = phone;
   }
 
-  // function send_sms() {
-  //   axios
-  //     .post(
-  //       "https://apisms.beem.africa/v1/send",
-  //       {
-  //         source_addr: source_addr,
-  //         schedule_time: "",
-  //         encoding: 0,
-  //         message: draft(),
-  //         recipients: [contact],
-  //       },
-  //       {
-  //         headers: {
-  //           "Content-Type": content_type,
-  //           Authorization: "Basic " + btoa(api_key + ":" + secret_key),
-  //         },
-  //         httpsAgent: new https.Agent({
-  //           rejectUnauthorized: false,
-  //         }),
-  //       }
-  //     )
-  //     .then((response) => console.log("Everything is working fine"))
-  //     .catch((error) => console.error(error.response.data));
-  // }
+  function send_sms() {
+    axios
+      .post(
+        "https://apisms.beem.africa/v1/send",
+        {
+          source_addr: source_addr,
+          schedule_time: "",
+          encoding: 0,
+          message: draft(),
+          recipients: [contact],
+        },
+        {
+          headers: {
+            "Content-Type": content_type,
+            Authorization: "Basic " + btoa(api_key + ":" + secret_key),
+          },
+          httpsAgent: new https.Agent({
+            rejectUnauthorized: false,
+          }),
+        }
+      )
+      .then((response) => console.log("Everything is working fine"))
+      .catch((error) => console.error(error.response.data));
+  }
 
   if (days < 2) {
-    // send_sms();
-    console.log("sms");
+    send_sms();
+    console.log("sms sent");
     modifier();
   }
 

@@ -16,7 +16,12 @@ function Signup({ setNewCust }) {
 
     let phone = getValues("recepient");
     setFormat((format = phone.slice(1)));
-    const code = `255${format}`;
+    let code = "";
+    if (format[0] === "2") {
+      code = `${format}`;
+    } else {
+      code = `255${format}`;
+    }
 
     db.collection("Customer").add({
       name: getValues("name"),
@@ -26,6 +31,7 @@ function Signup({ setNewCust }) {
       relation: getValues("relate"),
     });
     r.target.reset();
+    alert("Submission was successfully");
   };
 
   return (

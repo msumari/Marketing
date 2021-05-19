@@ -10,9 +10,10 @@ function Home() {
     <Sms>
       <h1>ROYAL OVEN</h1>
       <div className="buttons">
-        <button>
-          <Link to="/customers">Customers</Link>
-        </button>
+        <Link to="/customers">
+          <button>Customers</button>
+        </Link>
+
         <button onClick={() => setNewCust(true)}>New Customer</button>
         {newCust && <Signup newCust={newCust} setNewCust={setNewCust} />}
       </div>
@@ -50,19 +51,26 @@ const Sms = styled.div`
       color: white;
       letter-spacing: 1px;
       background: transparent;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
       border: 1px solid white;
       box-shadow: inset -2px -2px 3px #606060ff,
         inset 5px 5px 5px rgba(255, 255, 255, 0.6);
-      > a {
-        outline: none;
-        text-decoration: none;
-        color: white;
-        letter-spacing: 1px;
-        font-size: 20px;
-        font-weight: 600;
-      }
+    }
+    > a > button {
+      width: 100%;
+      background: transparent;
+      height: 10vh;
+      border-radius: 20px;
+      outline: none;
+      text-decoration: none;
+      color: white;
+      letter-spacing: 1px;
+      font-size: 18px;
+      font-weight: 600;
+      border: 1px solid white;
+      box-shadow: inset -2px -2px 3px #606060ff,
+        inset 5px 5px 5px rgba(255, 255, 255, 0.6);
     }
   }
 `;
